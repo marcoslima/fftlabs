@@ -10,9 +10,14 @@ private:
     cv::Mat _dft[2];
     cv::Mat _magnitude;
 
+    void _make_magnitude(cv::Size source_size);
 public:
-    CDft(const cv::Mat& source, bool multichannel = false, uint16_t size = 512);
+    CDft(const cv::Mat& source, uint16_t size = 512);
+    CDft(uint16_t size = 512);
     cv::Mat& magnitude(void);
+    CDft mul_spec(CDft &other, cv::Size size);
+    void set_planes(cv::Mat *planes, cv::Size size);
+    cv::Mat idft();
 };
 
 #endif // DFT_H
