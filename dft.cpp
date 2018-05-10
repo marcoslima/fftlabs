@@ -24,6 +24,7 @@ CDft::CDft(const cv::Mat &source, uint16_t size)
 
     Merge(src, Mat::zeros(src.size(), src.type()), planes);
     Mat imgDft;
+    src.copyTo(imgDft);
     dft(src, imgDft, DFT_COMPLEX_OUTPUT);
     split(imgDft, _dft);
     _make_magnitude(source.size());
@@ -77,7 +78,7 @@ Mat CDft::idft(void)
     Mat org, result;
     merge(_dft, 2, org);
 
-    dft(org, result, DFT_INVERSE | DFT_REAL_OUTPUT);
-    result.convertTo(result, CV_8UC1, 255);
+    dft(org, result, DFT_INVERSE | DFT_REAL_OUTPUT | DFT_SCALE);
+    result.convertTo(result, CV_8U);
     return result;
 }

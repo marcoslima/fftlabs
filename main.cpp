@@ -50,8 +50,6 @@ int main(int argc, char *argv[])
         imshow("bgDft", adftBg.magnitude());
         imshow("fg", fgMask);
         imshow("fgDft", adftFg.magnitude());
-        imshow("mulspec", mulspec.magnitude());
-        imshow("inverse", adft.idft());
 
         int tecla = waitKey(1);
         if(tecla == 27)
